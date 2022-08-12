@@ -7,15 +7,20 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.globallogic.demojpa.entity.DeptEntity;
 import com.globallogic.demojpa.entity.EmployeeEntity;
+import com.globallogic.demojpa.repo.DeptRepo;
 import com.globallogic.demojpa.repo.EmployeeRepo;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/employee")
 public class HomeContoller {
 
 	@Autowired
 	EmployeeRepo repo;
+	
+	@Autowired
+	DeptRepo deptRepo;
 	
 	//use the GET All the data 
 	@GetMapping("/")
@@ -32,6 +37,13 @@ public class HomeContoller {
 	@PostMapping("/")
 	public EmployeeEntity saveEmployee(@RequestBody EmployeeEntity  emp)
 	{
+		System.out.println("dept  "+emp.getDept());
+		
+		DeptEntity entity=deptRepo.findById(emp.getDept().getId()).get();
+		
+		System.err.println("dept id"+entity);
+		
+		emp.setDept(entity);
 		System.err.println(emp);
 		repo.save(emp);
 		System.err.println(emp);
@@ -43,7 +55,8 @@ public class HomeContoller {
 	@PutMapping("/")
 	public EmployeeEntity updateEmployee(@RequestBody EmployeeEntity  emp)
 	{
-		System.err.println(emp);
+	
+		
 		repo.save(emp);
 		System.err.println(emp);
 		return emp;

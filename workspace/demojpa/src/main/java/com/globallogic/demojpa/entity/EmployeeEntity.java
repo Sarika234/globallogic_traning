@@ -1,10 +1,12 @@
 package com.globallogic.demojpa.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GeneratorType;
@@ -13,11 +15,32 @@ import org.hibernate.annotations.GeneratorType;
 @Table(name="employee")
 public class EmployeeEntity {
 	
-	
+	EmployeeEntity()
+	{
+		
+	}
+
 
 	@Override
 	public String toString() {
-		return "EmployeeEntity [id=" + id + ", name=" + name + ", salary=" + salary + ", deptid=" + deptid + "]";
+		return "EmployeeEntity [id=" + id + ", name=" + name + ", salary=" + salary + ", dept=" + dept + "]";
+	}
+
+	public EmployeeEntity(int id, String name, double salary, DeptEntity dept) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.dept = dept;
+	}
+
+	public DeptEntity getDept() {
+		return dept;
+	}
+
+
+	public void setDept(DeptEntity dept) {
+		this.dept = dept;
 	}
 
 	@Id
@@ -30,8 +53,8 @@ public class EmployeeEntity {
 	@Column
 	double salary;
 	
-	@Column
-	int deptid;
+	@OneToOne
+	DeptEntity dept;
 	
 	public int getId() {
 		return id;
@@ -57,12 +80,6 @@ public class EmployeeEntity {
 		this.salary = salary;
 	}
 
-	public int getDeptid() {
-		return deptid;
-	}
 
-	public void setDeptid(int deptid) {
-		this.deptid = deptid;
-	}
 
 }
