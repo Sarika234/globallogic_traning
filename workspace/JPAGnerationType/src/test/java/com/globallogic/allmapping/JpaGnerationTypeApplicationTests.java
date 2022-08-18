@@ -1,0 +1,13 @@
+package com.globallogic.allmapping;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class JpaGnerationTypeApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
