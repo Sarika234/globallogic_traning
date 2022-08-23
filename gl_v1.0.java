@@ -274,8 +274,68 @@ public class SwaggerConfig implements WebMvcConfigurer{
 //Step 4: Swagger URL for Application
 
 http://localhost:8888/swagger-ui/index.html
- 			
 
+
+#Spring Security: it is part of spring freamwork and it provide the two things 
+
+#Spring authentication : you have valid login credtenial to enter into some system  
+                     # : username
+					#  : password
+# it will verify the user who have the registered account. and password matched then user is able to login 					  
+
+Spring authorization : right of access: 
+                      : admin--able to add the courses and marks of student
+					   : student : view the result
+					   :staff : able to add exam and result 
+					    :controller level
+
+#USer login details with Roles
+#user : ravinder
+#password : kumar
+#role : admin						
+						
+
+College managment System : 
+
+
+Spring Security is a Java/Java EE framework that provides authentication, authorization and other
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 			
+			
+	Registration Number*		CH01BR0191
+Chassis No (Full)       ME4JF495AJ8164745
+ Engine No*              JF49E82279474
 
 
 
