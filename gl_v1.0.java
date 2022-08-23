@@ -199,14 +199,81 @@ Structure of Mavan Project :
                         >class
            >pom.xml
 		   
-	   
-	   
-	   
-	   
-	   
-	   
+		   
+HTTP CLinet :it help us to send and take the response back
+Post : it can be installed in window and you can send post put get and delete request to API'same
+Swagger : it is third part tools . But you can integrate the web application into api  		   
+	
+Swagger 2 and Swagger 3 is there 
 
 
+//Step 1: 
+
+
+       <dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>	   
+
+
+Step 2://Create a config class 
+
+/////////////////////////////////////////////////
+
+package com.globallogic.demojpa;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
+@Configuration
+public class SwaggerConfig implements WebMvcConfigurer{                                    
+	@Bean
+	public Docket api() {
+	 return new Docket(DocumentationType.SWAGGER_2)
+	 .select()
+	 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+	 .paths(PathSelectors.any())
+	 .build();
+	}
+
+	
+	public static ApiInfo metadata(){
+		 return new ApiInfoBuilder()
+		 .title("Project Titlw")
+		 .description("Created By Ravinder Kumar")
+		 .version("1.x")
+		 .build();
+		}
+	
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");    
+   }
+}
+
+//Step: change the Properties files to have matching strategy
+
+	   spring.mvc.pathmatch.matching-strategy=ant-path-matcher 
+
+//Step 4: Swagger URL for Application
+
+http://localhost:8888/swagger-ui/index.html
  			
 
 
