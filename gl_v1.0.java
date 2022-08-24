@@ -294,6 +294,9 @@ Spring authorization : right of access:
 #password : kumar
 #role : admin						
 						
+Auth Token : Jwt : json web Token
+             Auth2.0 : 
+
 
 College managment System : 
 
